@@ -290,7 +290,6 @@ macro_rules! link_nfa {
             let mut vertex_num_epsilon = 1;
             $(
                 edges.push(NFAEdge(0, vertex_num_epsilon, Condition::Epsilon));
-                #[allow(unused)]
                 vertex_num_epsilon += $nfa.get_vertex_num();
             )*
             $(
