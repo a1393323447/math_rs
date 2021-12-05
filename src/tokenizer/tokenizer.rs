@@ -9,7 +9,12 @@ pub fn get_expr_tokenizer() -> DFA<ExprTokenType> {
     let no_zero = NFA::from_symbol_range('1'..='9');
     let non_zero_int = no_zero.clone() & digit.clone().closure();
     let int = non_zero_int.clone() | NFA::from_symbol('0');
-    let mut num = int.clone() & NFA::zero_or_one('.') & int.clone().closure();
+    let mut num = int.clone() & 
+                                   (NFA::zero_or_one(".") |
+                                    NFA::zero_or_one("e") | 
+                                    NFA::zero_or_one("e-")
+                                   ) & 
+                                   int.clone().closure();
     num.set_state(ExprTokenType::Num);
 
     let all_alp = NFA::from_symbol_set("xyzknmpqijXYZKNMPQIJ");
@@ -65,7 +70,7 @@ fn test_tokenizer() {
     let tokenizer = get_expr_tokenizer();
     // let result = tokenizer.match_one("tanh");
     // println!("{:?}", result);
-    let origin = "x1+x2+x3*4 + tanh(1.3) + sin(3.2) + cos(1.0) - tan(1/2.0) + 1 % 2";
+    let origin = "x1+x2+x3*4 + tanh(1.3) + sin(3.2) + cos(1.0) - tan(1/2.0) + 1 % 2 + 31e-22";
     let result = tokenizer.tokenize(origin);
     println!("{:?}", result);
 }

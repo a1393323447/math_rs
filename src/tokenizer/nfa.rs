@@ -44,11 +44,19 @@ impl<Ac> NFA<Ac> {
     ) -> NFA<Ac> {
         NFA { edges, vertex_num, states, symbol_set }
     }
-    pub fn zero_or_one(symbol: char) -> NFA<Ac> {
-        let edges = vec![NFAEdge(0, 1, Condition::Symbol(symbol)), NFAEdge(0, 1, Condition::Epsilon)];
+    pub fn zero_or_one(literal: &str) -> NFA<Ac> {
+        let mut edges = vec![];
         let mut symbol_set = HashSet::new();
-        symbol_set.insert(symbol);
-        NFA { edges, vertex_num: 2, states: HashMap::new(), symbol_set }
+        let vertex_num = (literal.len() + 2) as u32;
+        let mut current_vertex_num = 0;
+        edges.push(NFAEdge(0, vertex_num - 1, Condition::Epsilon));
+        for symbol in literal.chars() {
+            edges.push(NFAEdge(current_vertex_num, current_vertex_num + 1, Condition::Symbol(symbol)));
+            symbol_set.insert(symbol);
+            current_vertex_num += 1;
+        }
+        edges.push(NFAEdge(current_vertex_num, vertex_num - 1, Condition::Epsilon));
+        NFA { edges, vertex_num, states: HashMap::new(), symbol_set }
     }
     pub fn from_symbol(symbol: char) -> NFA<Ac> {
         let edges = vec![NFAEdge(0, 1, Condition::Symbol(symbol))];

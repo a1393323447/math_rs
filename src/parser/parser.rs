@@ -61,7 +61,7 @@ struct Parser {
 // T  -> F T1
 // T1 -> * F T1 | / F T1 | % F T1 | #
 // F -> G !   | G
-// G -> - H   | H
+// G -> - H   | + H    | H
 // H -> (E)   | sin(E) | cos(E)| tan(E)
 //            | tanh(E)| num   | var
 
@@ -236,6 +236,14 @@ impl Parser {
                         let expr = ASTNode::new(Some(left_op), Some(right_op), operator);
                         Opend::Expr(Box::new(expr))
                     },
+                    ExprTokenType::Add => {
+                        let _sub = self.get_next_token();
+                        let left_op = Opend::Num(0.0);
+                        let operator = Operator::Add;
+                        let right_op = self.parse_h();
+                        let expr = ASTNode::new(Some(left_op), Some(right_op), operator);
+                        Opend::Expr(Box::new(expr))
+                    }
                     _ => { self.parse_h() }
                 }
             },
@@ -326,11 +334,11 @@ fn parse(origin: &str) -> Expression {
 
 #[test]
 fn test_parse() {
-    let mut expr = Expression::parse("-x1 + x2 * 3 - sin(3.14) + (cos(3.14) - 2 * cos(3.14))");
+    let mut expr = Expression::parse("-x1 + x2 * 3 - sin(3.14) + (cos(3.14) - 2 * cos(3.14)) + 1e3");
     expr
         .set_variable("x1", "2 * 231")
         .set_variable("x2", "2");
     let pi: f64 = 3.14;
-    println!("{}", -2.0 * 231.0 + 2.0 * 3.0 - pi.sin() + (pi.cos() - pi.cos() * 2.0));
+    println!("{}", -2.0 * 231.0 + 2.0 * 3.0 - pi.sin() + (pi.cos() - pi.cos() * 2.0) + 1e3);
     println!("{}", expr.excute());
 }

@@ -40,6 +40,7 @@ pub struct DFA<AcceptEnum> {
 }
 
 impl<Ac: Copy> DFA<Ac> {
+    #[allow(unused)]
     pub fn match_one(&self, words: &str) -> Option<Ac> {
         let mut current_vertex = 0;
         let mut is_move;
