@@ -1,10 +1,11 @@
 [package]
-name = "mathrs"
-version = "0.0.1"
+name = "big_num"
+version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+keywords = ["big_num", "BigInt"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 lazy_static = "1.4.0"
-big_num = { path="big_num" }

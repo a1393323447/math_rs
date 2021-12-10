@@ -290,7 +290,7 @@ macro_rules! link_nfa {
     ($($nfa: expr), *) => {
         {
             use std::collections::{HashMap, HashSet};
-            use crate::tokenizer::nfa::*;
+            use crate::expr::tokenizer::nfa::*;
             let mut vertex_num = 1;
             let mut edges = Vec::new();
             let mut symbol_set = HashSet::new();
@@ -318,7 +318,7 @@ mod test {
     #![allow(unused)]
     use std::collections::HashSet;
 
-    use crate::tokenizer::nfa::NFA;
+    use crate::expr::tokenizer::nfa::NFA;
 
     #[derive(Debug, Clone, Copy)]
     enum Token {

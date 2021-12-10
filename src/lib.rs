@@ -1,14 +1,11 @@
-mod tokenizer;
-mod parser;
-
-pub use crate::parser::parser::Expression;
+mod expr;
 
 #[cfg(test)]
 mod tests {
-    use crate::Expression;
+    use crate::expr::Expression;
 
     #[test]
-    fn it_works() {
+    fn expr_test() {
         let mut expr = Expression::parse("1 + 2*3 - x1 * x2");
         expr.set_variable("x1", "2")
             .set_variable("x2", "2 * 2");

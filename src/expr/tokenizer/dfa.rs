@@ -154,8 +154,8 @@ impl<Ac: TokenType> DFA<Ac>  {
 mod test {
     #![allow(unused)]
     use crate::link_nfa;
-    use crate::tokenizer::nfa::NFA;
-    use crate::tokenizer::dfa::DFA;
+    use crate::expr::tokenizer::nfa::NFA;
+    use crate::expr::tokenizer::dfa::DFA;
 
     #[derive(Clone, Copy, Debug)]
     enum Token {

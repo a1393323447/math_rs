@@ -1,6 +1,6 @@
 use std::{collections::{VecDeque, HashMap}, cell::RefCell};
 
-use crate::tokenizer::{ DFA, Token, ExprTokenType, get_expr_tokenizer};
+use crate::expr::tokenizer::{ DFA, Token, ExprTokenType, get_expr_tokenizer};
 use super::ast::{ASTNode, Opend, Operator, Variable, ResultType};
 
 use lazy_static::*;
@@ -60,10 +60,10 @@ struct Parser {
 // E1 -> + T E1 | - T E1 | #
 // T  -> F T1
 // T1 -> * F T1 | / F T1 | % F T1 | #
-// F -> G !   | G
-// G -> - H   | + H    | H
-// H -> (E)   | sin(E) | cos(E)| tan(E)
-//            | tanh(E)| num   | var
+// F  -> G !    | G
+// G  -> - H    | + H    | H
+// H  -> (E)    | sin(E) | cos(E) | tan(E)
+//              | tanh(E)| num    | var
 
 impl Parser {
     fn new() -> Self {
