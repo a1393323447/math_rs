@@ -64,6 +64,25 @@ macro_rules! bit_length_u32 {
     };
 }
 
+/// # BigInt
+/// Immutable arbitrary-precision integers.  All operations behave as if BigInt were represented in two's-complement notation.
+/// Range form `-2^(u32::MAX)` to `2^(u32::MAX)`.
+/// # Example
+/// ```
+/// use big_num::BigInt;
+///
+/// let a: BigInt = "10000000000000".into();
+/// let b: BigInt = "900000000000".into();
+/// println!("a = {}", a);      
+/// println!("a + b = {}", &a + &b);
+/// println!("a - b = {}", &a - &b);
+/// println!("a * b = {}", &a * &b);
+/// println!("a / b = {}", &a / &b);
+/// println!("a % b = {}", &a % &b);
+/// println!("a << 10 = {}", &a << 10);
+/// println!("a >> 10 = {}", &a >> 10);
+/// ```
+/// 
 #[derive(Debug, Clone)]
 pub struct BigInt {
     signum: i8,

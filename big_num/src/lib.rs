@@ -1,6 +1,6 @@
 //! Big Num \
 //! This crate provides:
-//! - `BigInt`: Immutable arbitrary-precision integers.  All operations behave as if BigInt were represented in two's-complement notation.
+//! - [`BigInt`]: Immutable arbitrary-precision integers.  All operations behave as if BigInt were represented in two's-complement notation.
 //! - `BigDec`: Immutable, arbitrary-precision signed decimal numbers. A BigDecimal consists of an arbitrary precision integer unscaled value and a 32-bit integer scale. (Coming Soon)
 
 mod big_int;

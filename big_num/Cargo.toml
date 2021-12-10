@@ -1,9 +1,12 @@
 [package]
 name = "big_num"
 version = "0.1.0"
+authors = ["朕与将军解战袍 <1393323447@qq.com>"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
+readme = "README.md"
 keywords = ["big_num", "BigInt"]
+repository = "https://github.com/a1393323447/math_rs/tree/master/big_num"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

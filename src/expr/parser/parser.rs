@@ -5,6 +5,7 @@ use super::ast::{ASTNode, Opend, Operator, Variable, ResultType};
 
 use lazy_static::*;
 
+/// 
 pub struct Expression {
     variable_table: HashMap<String, ASTNode>,
     main_expr: ASTNode,
