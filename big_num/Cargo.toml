@@ -2,6 +2,7 @@
 name = "big_num"
 version = "0.1.0"
 authors = ["朕与将军解战袍 <1393323447@qq.com>"]
+description = "A big number implement in rust"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
